@@ -1,0 +1,190 @@
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, TextInput, Pressable, SafeAreaView, ScrollView, StatusBar, Alert } from 'react-native';
+
+export default function HomeScreen() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [stationStatus, setStationStatus] = useState('Em Órbita Baixa (LEO)');
+
+  const handleInspect = () => {
+    Alert.alert("Status da Estação", "Sistemas operacionais e comerciais funcionando com 100% de eficiência!");
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor="#0B132B" />
+      
+      {/* Cabeçalho */}
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.welcomeText}>Orbital Nexus 🚀</Text>
+          <Text style={styles.headerSubtitle}>Estação Espacial Comercial</Text>
+        </View>
+        <Image 
+          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' }} 
+          style={styles.avatar} 
+        />
+      </View>
+
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+        
+        {/* Campo de Busca (TextInput) */}
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Pesquisar módulos ou pesquisas..."
+            placeholderTextColor="#8D99AE"
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+          />
+        </View>
+
+        {/* Card de Destaque / Status */}
+        <View style={styles.cardDestaque}>
+          <Text style={styles.cardTitle}>Status Operacional</Text>
+          <Text style={styles.cardDescription}>Localização atual: {stationStatus}</Text>
+          
+          <Pressable style={styles.button} onPress={handleInspect}>
+            <Text style={styles.buttonText}>Inspecionar Sistemas</Text>
+          </Pressable>
+        </View>
+
+        {/* Seção de Módulos Comerciais */}
+        <Text style={styles.sectionTitle}>Módulos Ativos</Text>
+        
+        <View style={styles.itemRow}>
+          <View style={styles.itemCard}>
+            <Text style={styles.itemTitle}>Laboratório Biotec</Text>
+            <Text style={styles.itemSub}>Pesquisa em Gravidade Zero</Text>
+          </View>
+          <View style={styles.itemCard}>
+            <Text style={styles.itemTitle}>Módulo Turístico</Text>
+            <Text style={styles.itemSub}>Observatório Panorâmico</Text>
+          </View>
+        </View>
+
+      </ScrollView>
+
+      {/* Rodapé Opcional */}
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>Commercial Space Station OS • 2026</Text>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#0B132B',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#1C2541',
+  },
+  welcomeText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#6FFFE9',
+  },
+  headerSubtitle: {
+    fontSize: 13,
+    color: '#8D99AE',
+  },
+  avatar: {
+    width: 45,
+    height: 45,
+    borderRadius: 22.5,
+    borderWidth: 2,
+    borderColor: '#5BC0BE',
+  },
+  scrollContent: {
+    padding: 20,
+  },
+  searchContainer: {
+    marginBottom: 20,
+  },
+  input: {
+    backgroundColor: '#1C2541',
+    borderWidth: 1,
+    borderColor: '#3A506B',
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    fontSize: 14,
+    color: '#FFFFFF',
+  },
+  cardDestaque: {
+    backgroundColor: '#1C2541',
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 24,
+    borderWidth: 1,
+    borderColor: '#3A506B',
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#6FFFE9',
+    marginBottom: 6,
+  },
+  cardDescription: {
+    fontSize: 14,
+    color: '#8D99AE',
+    marginBottom: 16,
+  },
+  button: {
+    backgroundColor: '#5BC0BE',
+    borderRadius: 10,
+    paddingVertical: 12,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#0B132B',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#6FFFE9',
+    marginBottom: 12,
+  },
+  itemRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  itemCard: {
+    flex: 0.48,
+    backgroundColor: '#1C2541',
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#3A506B',
+  },
+  itemTitle: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#5BC0BE',
+    marginBottom: 4,
+  },
+  itemSub: {
+    fontSize: 12,
+    color: '#8D99AE',
+  },
+  footer: {
+    paddingVertical: 12,
+    alignItems: 'center',
+    borderTopWidth: 1,
+    borderTopColor: '#1C2541',
+    backgroundColor: '#0B132B',
+  },
+  footerText: {
+    fontSize: 12,
+    color: '#8D99AE',
+  },
+});
